@@ -5,4 +5,7 @@ record JsonRegisterRequest(
   String idNumber,
   Authority authority
 ) {
+  RegisterRequest toRegisterRequest() {
+    return new RegisterRequest(name, idNumber, authority);
+  }
 }

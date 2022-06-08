@@ -16,7 +16,7 @@ public class UserApi {
 
   @PostMapping
   public ResponseEntity<?> signUp(@RequestBody JsonRegisterRequest jsonRequest) {
-    registrant.register(jsonRequest.name(), jsonRequest.idNumber(), jsonRequest.authority());
+    registrant.register(jsonRequest.toRegisterRequest());
 
     return JsonResponse.ok("Success SignUp");
   }

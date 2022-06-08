@@ -6,11 +6,11 @@ import lombok.RequiredArgsConstructor;
 class Registrant {
   private final AllUser allUser;
 
-  public void register(String name, String idNumber, Authority authority) {
-    if (allUser.exist(idNumber, authority)) {
+  public void register(RegisterRequest request) {
+    if (allUser.exist(request.idNumber(), request.authority())) {
       throw new ExistUserException();
     }
 
-    allUser.register(name, idNumber, authority);
+    allUser.register(request.name(), request.idNumber(), request.authority());
   }
 }
