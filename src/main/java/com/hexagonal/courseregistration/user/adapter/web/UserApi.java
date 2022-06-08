@@ -1,4 +1,4 @@
-package com.hexagonal.courseregistration.user.adapter.in.web;
+package com.hexagonal.courseregistration.user.adapter.web;
 
 import com.hexagonal.courseregistration.common.JsonResponse;
 import com.hexagonal.courseregistration.user.application.Registrant;

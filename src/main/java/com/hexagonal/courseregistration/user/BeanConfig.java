@@ -1,8 +1,8 @@
 package com.hexagonal.courseregistration.user;
 
-import com.hexagonal.courseregistration.user.adapter.out.persistence.JpaUserAdapter;
-import com.hexagonal.courseregistration.user.adapter.out.persistence.JpaUserRepository;
-import com.hexagonal.courseregistration.user.application.port.out.AllUser;
+import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserAdapter;
+import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
+import com.hexagonal.courseregistration.user.application.AllUser;
 import com.hexagonal.courseregistration.user.application.Registrant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

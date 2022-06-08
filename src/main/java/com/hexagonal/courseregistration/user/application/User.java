@@ -1,4 +1,4 @@
-package com.hexagonal.courseregistration.user.domain;
+package com.hexagonal.courseregistration.user.application;
 
 public record User(
   String name,

@@ -1,7 +1,5 @@
 package com.hexagonal.courseregistration.user.application;
 
-import com.hexagonal.courseregistration.user.application.port.out.AllUser;
-import com.hexagonal.courseregistration.user.domain.User;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
