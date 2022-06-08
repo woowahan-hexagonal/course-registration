@@ -11,6 +11,6 @@ class Registrant {
       throw new ExistUserException();
     }
 
-    allUser.register(request.name(), request.idNumber(), request.authority());
+    allUser.register(new User(request.name(), request.idNumber(), request.authority()));
   }
 }

@@ -15,12 +15,12 @@ public class JpaUserAdapter implements AllUser {
 
   @Override
   @Transactional
-  public void register(String name, String idNumber, Authority authority) {
+  public void register(User user) {
     jpaUserRepository.save(
       UserEntity.builder()
-        .name(name)
-        .idNumber(idNumber)
-        .authority(authority)
+        .name(user.name())
+        .idNumber(user.idNumber())
+        .authority(user.authority())
         .build());
   }
 }

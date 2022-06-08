@@ -20,7 +20,13 @@ class RegistrantTest {
 
     var inOrder = inOrder(allUser);
     inOrder.verify(allUser, times(1)).exist("17101223", STUDENT);
-    inOrder.verify(allUser, times(1)).register("seungjaeOh", "17101223", STUDENT);
+    inOrder.verify(allUser, times(1)).register(
+      new User(
+        "seungjaeOh",
+        "17101223",
+        STUDENT
+      )
+    );
     verifyNoMoreInteractions(allUser);
   }
 
@@ -35,7 +41,13 @@ class RegistrantTest {
 
     var inOrder = inOrder(allUser);
     inOrder.verify(allUser, times(1)).exist("221103", PROFESSOR);
-    inOrder.verify(allUser, times(1)).register("chulsuKim", "221103", PROFESSOR);
+    inOrder.verify(allUser, times(1)).register(
+      new User(
+        "chulsuKim",
+        "221103",
+        PROFESSOR
+      )
+    );
     verifyNoMoreInteractions(allUser);
   }
 
