@@ -1,2 +1,5 @@
-package com.hexagonal.courseregistration.user;public enum Authority {
+package com.hexagonal.courseregistration.user;
+
+enum Authority {
+  STUDENT, PROFESSOR
 }
