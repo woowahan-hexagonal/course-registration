@@ -1,5 +1,8 @@
-package com.hexagonal.courseregistration.user;
+package com.hexagonal.courseregistration.user.adapter.out.persistence;
 
+import com.hexagonal.courseregistration.user.application.port.out.AllUser;
+import com.hexagonal.courseregistration.user.domain.Authority;
+import com.hexagonal.courseregistration.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

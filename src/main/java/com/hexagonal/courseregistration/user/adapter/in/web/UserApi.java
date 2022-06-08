@@ -1,6 +1,7 @@
-package com.hexagonal.courseregistration.user;
+package com.hexagonal.courseregistration.user.adapter.in.web;
 
 import com.hexagonal.courseregistration.common.JsonResponse;
+import com.hexagonal.courseregistration.user.application.Registrant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

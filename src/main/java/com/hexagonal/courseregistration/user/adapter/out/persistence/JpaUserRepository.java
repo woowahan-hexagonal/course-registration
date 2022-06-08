@@ -1,5 +1,6 @@
-package com.hexagonal.courseregistration.user;
+package com.hexagonal.courseregistration.user.adapter.out.persistence;
 
+import com.hexagonal.courseregistration.user.domain.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

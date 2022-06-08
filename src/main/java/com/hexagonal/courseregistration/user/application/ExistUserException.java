@@ -1,4 +1,4 @@
-package com.hexagonal.courseregistration.user;
+package com.hexagonal.courseregistration.user.application;
 
 import com.hexagonal.courseregistration.common.ApiException;
 import org.springframework.http.HttpStatus;

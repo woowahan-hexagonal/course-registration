@@ -1,9 +1,11 @@
-package com.hexagonal.courseregistration.user;
+package com.hexagonal.courseregistration.user.application;
 
+import com.hexagonal.courseregistration.user.application.port.out.AllUser;
+import com.hexagonal.courseregistration.user.domain.User;
 import org.junit.jupiter.api.Test;
 
-import static com.hexagonal.courseregistration.user.Authority.PROFESSOR;
-import static com.hexagonal.courseregistration.user.Authority.STUDENT;
+import static com.hexagonal.courseregistration.user.domain.Authority.PROFESSOR;
+import static com.hexagonal.courseregistration.user.domain.Authority.STUDENT;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
