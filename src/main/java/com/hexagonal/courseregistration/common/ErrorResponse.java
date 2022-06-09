@@ -1,7 +1,6 @@
 package com.hexagonal.courseregistration.common;
 
-record ResponseBody(
-  String message,
-  Object data
+record ErrorResponse(
+  String message
 ) {
 }

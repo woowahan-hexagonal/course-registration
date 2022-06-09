@@ -2,7 +2,6 @@ package com.hexagonal.courseregistration.user.adapter.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hexagonal.courseregistration.user.application.Registrant;
-import org.hamcrest.core.IsNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -37,7 +36,6 @@ class UserApiTest {
 
     actual
       .andExpect(status().isOk())
-      .andExpect(jsonPath("message").value("Success SignUp"))
-      .andExpect(jsonPath("data").value(IsNull.nullValue()));
+      .andExpect(jsonPath("message").value("Success SignUp"));
   }
 }
