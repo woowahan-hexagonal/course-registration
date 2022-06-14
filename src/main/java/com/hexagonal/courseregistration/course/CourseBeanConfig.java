@@ -1,5 +1,12 @@
 package com.hexagonal.courseregistration.course;
 
+import com.hexagonal.courseregistration.course.adapter.persistence.JpaCourseAdapter;
+import com.hexagonal.courseregistration.course.adapter.persistence.JpaCourseRepository;
+import com.hexagonal.courseregistration.course.adapter.persistence.JpaUserAdapter;
+import com.hexagonal.courseregistration.course.application.*;
+import com.hexagonal.courseregistration.course.application.port.CheckExistCoursePort;
+import com.hexagonal.courseregistration.course.application.port.CheckProfessorPort;
+import com.hexagonal.courseregistration.course.application.port.SaveCoursePort;
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
