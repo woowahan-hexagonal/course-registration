@@ -7,9 +7,7 @@ import com.hexagonal.courseregistration.user.application.RegisterUserUseCase;
 import com.hexagonal.courseregistration.user.application.SaveUserPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@EnableJpaAuditing
 @Configuration
 class UserBeanConfig {
   @Bean
