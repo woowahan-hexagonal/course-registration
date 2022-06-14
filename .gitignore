@@ -17,6 +17,12 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+## OS Files
+.DS_Store
+
+## Application.yaml
+application-*.yaml
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
