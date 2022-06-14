@@ -1,4 +1,4 @@
-package com.hexagonal.courseregistration.user.port;
+package com.hexagonal.courseregistration.user.application;
 
 import com.hexagonal.courseregistration.user.application.Authority;
 

@@ -1,7 +1,5 @@
 package com.hexagonal.courseregistration.user.application;
 
-import com.hexagonal.courseregistration.user.port.CheckExistUserPort;
-import com.hexagonal.courseregistration.user.port.SaveUserPort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

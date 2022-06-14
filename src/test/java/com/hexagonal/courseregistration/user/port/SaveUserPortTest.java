@@ -2,6 +2,7 @@ package com.hexagonal.courseregistration.user.port;
 
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserAdapter;
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
+import com.hexagonal.courseregistration.user.application.SaveUserPort;
 import com.hexagonal.courseregistration.user.application.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
