@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
-@Configuration("UserBeanConfig")
-class BeanConfig {
+@Configuration
+class UserBeanConfig {
   @Bean
   AllUser allUser(JpaUserRepository jpaUserRepository) {
     return new JpaUserAdapter(jpaUserRepository);
