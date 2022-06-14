@@ -1,33 +1,39 @@
-package com.hexagonal.courseregistration.user.port;
+package com.hexagonal.courseregistration.course;
 
-import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserAdapter;
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
+import com.hexagonal.courseregistration.user.adapter.persistence.UserEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import static com.hexagonal.courseregistration.user.application.Authority.STUDENT;
+import static com.hexagonal.courseregistration.user.application.Authority.PROFESSOR;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class CheckExistUserPortTest {
+class CheckProfessorPortTest {
   @Autowired
   private JpaUserRepository jpaUserRepository;
-  private CheckExistUserPort checkExistUserPort;
+  private CheckProfessorPort checkProfessorPort;
 
   @BeforeEach
   void init() {
-    checkExistUserPort = new JpaUserAdapter(jpaUserRepository);
+    checkProfessorPort = new JpaUserAdapter(jpaUserRepository);
   }
 
   @Test
   void check() {
-    var actual = checkExistUserPort.check("22101223231", STUDENT);
+    var user = jpaUserRepository.save(UserEntity.builder()
+      .idNumber("203123412")
+      .name("홍길동")
+      .authority(PROFESSOR)
+      .build());
 
-    assertThat(actual, is(false));
+    var actual = checkProfessorPort.check(user.id());
+
+    assertThat(actual, is(true));
   }
 }

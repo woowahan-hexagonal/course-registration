@@ -1,4 +1,4 @@
-package com.hexagonal.courseregistration.user.application;
+package com.hexagonal.courseregistration.course;
 
 import com.hexagonal.courseregistration.common.application.DomainException;
 

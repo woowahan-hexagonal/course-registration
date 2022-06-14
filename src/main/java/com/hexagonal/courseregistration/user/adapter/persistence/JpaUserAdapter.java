@@ -1,9 +1,9 @@
 package com.hexagonal.courseregistration.user.adapter.persistence;
 
 import com.hexagonal.courseregistration.user.application.Authority;
+import com.hexagonal.courseregistration.user.application.User;
 import com.hexagonal.courseregistration.user.port.CheckExistUserPort;
 import com.hexagonal.courseregistration.user.port.SaveUserPort;
-import com.hexagonal.courseregistration.user.application.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +26,5 @@ public class JpaUserAdapter implements CheckExistUserPort, SaveUserPort {
   @Override
   public boolean check(String idNumber, Authority authority) {
     return jpaUserRepository.findByIdNumberAndAuthority(idNumber, authority).isPresent();
-
   }
 }

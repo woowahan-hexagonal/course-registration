@@ -1,6 +1,8 @@
 package com.hexagonal.courseregistration.common.adapter.web;
 
-import com.hexagonal.courseregistration.common.application.ApiException;
+import com.hexagonal.courseregistration.common.application.DomainException;
+import com.hexagonal.courseregistration.common.application.ForbiddenException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class ResponseFactory {
@@ -12,8 +14,12 @@ public class ResponseFactory {
     return ResponseEntity.ok(new SuccessResponse(message));
   }
 
-  public static ResponseEntity<?> badRequest(ApiException exception) {
+  public static ResponseEntity<?> badRequest(DomainException exception) {
     return ResponseEntity.badRequest().body(new ErrorResponse(exception.message()));
+  }
+
+  public static ResponseEntity<?> forbidden(ForbiddenException exception) {
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(exception.message()));
   }
 
   public static ResponseEntity<?> fail(Exception exception) {

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-class RegisterUserUseCaseTest {
+class RegisterBooleanUseCaseTest {
   private CheckExistUserPort checkExistUserPort;
   private SaveUserPort saveUserPort;
   private RegisterUserUseCase registerUserUsecase;

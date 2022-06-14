@@ -21,7 +21,7 @@ class UserBeanConfig {
   }
 
   @Bean
-  RegisterUserUseCase registrant(
+  RegisterUserUseCase registerUserUseCase(
     CheckExistUserPort checkExistUserPort,
     SaveUserPort saveUserPort
   ) {
