@@ -1,8 +1,8 @@
 package com.hexagonal.courseregistration.user.adapter.persistence;
 
 import com.hexagonal.courseregistration.user.application.Authority;
-import com.hexagonal.courseregistration.user.application.CheckExistUserPort;
-import com.hexagonal.courseregistration.user.application.SaveUserPort;
+import com.hexagonal.courseregistration.user.port.CheckExistUserPort;
+import com.hexagonal.courseregistration.user.port.SaveUserPort;
 import com.hexagonal.courseregistration.user.application.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
