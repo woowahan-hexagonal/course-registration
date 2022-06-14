@@ -1,5 +1,6 @@
 package com.hexagonal.courseregistration.user.application;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.hexagonal.courseregistration.user.application.Authority.PROFESSOR;
@@ -9,10 +10,17 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 class RegistrantTest {
+  private AllUser allUser;
+  private Registrant registrant;
+
+  @BeforeEach
+  void init() {
+    allUser = mock(AllUser.class);
+    registrant = new Registrant(allUser);
+  }
+
   @Test
   void register_student() {
-    var allUser = mock(AllUser.class);
-    var registrant = new Registrant(allUser);
     var request = new RegisterRequest("seungjaeOh", "17101223", STUDENT);
     given(allUser.exist("17101223", STUDENT)).willReturn(false);
 
@@ -32,8 +40,6 @@ class RegistrantTest {
 
   @Test
   void register_professor() {
-    var allUser = mock(AllUser.class);
-    var registrant = new Registrant(allUser);
     var request = new RegisterRequest("chulsuKim", "221103", PROFESSOR);
     given(allUser.exist("221103", PROFESSOR)).willReturn(false);
 
@@ -53,8 +59,6 @@ class RegistrantTest {
 
   @Test
   void register_exist_user() {
-    var allUser = mock(AllUser.class);
-    var registrant = new Registrant(allUser);
     var request = new RegisterRequest("seungjaeOh", "17101223", STUDENT);
     given(allUser.exist("17101223", STUDENT)).willReturn(true);
 

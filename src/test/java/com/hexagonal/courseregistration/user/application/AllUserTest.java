@@ -2,6 +2,7 @@ package com.hexagonal.courseregistration.user.application;
 
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserAdapter;
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,11 +20,15 @@ class AllUserTest {
 
   @Autowired
   private JpaUserRepository jpaUserRepository;
+  private AllUser allUser;
+
+  @BeforeEach
+  void init() {
+    allUser = new JpaUserAdapter(jpaUserRepository);
+  }
 
   @Test
   void exist() {
-    var allUser = new JpaUserAdapter(jpaUserRepository);
-
     var actual = allUser.exist("22101223", STUDENT);
 
     assertThat(actual, is(false));
@@ -31,8 +36,6 @@ class AllUserTest {
 
   @Test
   void register_student() {
-    var allUser = new JpaUserAdapter(jpaUserRepository);
-
     allUser.register(new User(
       "samKim",
       "22101223",
@@ -45,8 +48,6 @@ class AllUserTest {
 
   @Test
   void register_professor() {
-    var allUser = new JpaUserAdapter(jpaUserRepository);
-
     allUser.register(new User(
       "samKim",
       "22111022",
