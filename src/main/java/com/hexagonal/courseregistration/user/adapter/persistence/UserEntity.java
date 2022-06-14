@@ -1,6 +1,6 @@
 package com.hexagonal.courseregistration.user.adapter.persistence;
 
-import com.hexagonal.courseregistration.common.BaseEntity;
+import com.hexagonal.courseregistration.common.adapter.persistence.BaseEntity;
 import com.hexagonal.courseregistration.user.application.Authority;
 import lombok.AccessLevel;
 import lombok.Builder;

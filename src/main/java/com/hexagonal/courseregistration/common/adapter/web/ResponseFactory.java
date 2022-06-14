@@ -1,8 +1,9 @@
-package com.hexagonal.courseregistration.common;
+package com.hexagonal.courseregistration.common.adapter.web;
 
+import com.hexagonal.courseregistration.common.application.ApiException;
 import org.springframework.http.ResponseEntity;
 
-public class JsonResponse {
+public class ResponseFactory {
   public static ResponseEntity<?> okWithData(String message, Object data) {
     return ResponseEntity.ok(new SuccessResponseWithData(message, data));
   }

@@ -1,4 +1,4 @@
-package com.hexagonal.courseregistration.common;
+package com.hexagonal.courseregistration.common.adapter.persistence;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

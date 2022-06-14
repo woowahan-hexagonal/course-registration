@@ -1,4 +1,4 @@
-package com.hexagonal.courseregistration.common;
+package com.hexagonal.courseregistration.common.application;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

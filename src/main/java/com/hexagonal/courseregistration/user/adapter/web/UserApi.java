@@ -1,6 +1,6 @@
 package com.hexagonal.courseregistration.user.adapter.web;
 
-import com.hexagonal.courseregistration.common.JsonResponse;
+import com.hexagonal.courseregistration.common.adapter.web.ResponseFactory;
 import com.hexagonal.courseregistration.user.application.Registrant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,6 @@ public class UserApi {
   public ResponseEntity<?> signUp(@RequestBody JsonRegisterRequest jsonRequest) {
     registrant.register(jsonRequest.toRegisterRequest());
 
-    return JsonResponse.ok("Success SignUp");
+    return ResponseFactory.ok("Success SignUp");
   }
 }
