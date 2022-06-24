@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.is;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class SaveUserPortTest {
+class SaveNewUserPortTest {
   @Autowired
   private JpaUserRepository jpaUserRepository;
   private SaveUserPort saveUserPort;
@@ -29,7 +29,7 @@ class SaveUserPortTest {
   void save_student() {
     var count = jpaUserRepository.count();
 
-    saveUserPort.save(new User(
+    saveUserPort.save(new NewUser(
       "samKim",
       "22101223231",
       STUDENT
@@ -42,7 +42,7 @@ class SaveUserPortTest {
   void save_professor() {
     var count = jpaUserRepository.count();
 
-    saveUserPort.save(new User(
+    saveUserPort.save(new NewUser(
       "samKim",
       "22101223231",
       PROFESSOR

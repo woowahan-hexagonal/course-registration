@@ -8,7 +8,7 @@
 
 ### 헥사고날 아키텍처
 
-![스크린샷 2022-06-03 오후 2 45 58](https://user-images.githubusercontent.com/33858991/171874613-32d79184-3146-4c25-bdb0-21761e47c8a9.png)
+![스크린샷 2022-06-03 오후 2 45 58](https://newUser-images.githubusercontent.com/33858991/171874613-32d79184-3146-4c25-bdb0-21761e47c8a9.png)
 
 이미지 출처 : [https://reflectoring.io/book/](https://reflectoring.io/book/)
 

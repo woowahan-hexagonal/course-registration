@@ -1,8 +1,8 @@
-package com.hexagonal.courseregistration.course.application.port;
+package com.hexagonal.courseregistration.user.application;
 
-import com.hexagonal.courseregistration.course.adapter.persistence.JpaUserAdapter;
-import com.hexagonal.courseregistration.course.application.port.CheckProfessorPort;
+import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserAdapter;
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
+import com.hexagonal.courseregistration.user.adapter.persistence.UserConverter;
 import com.hexagonal.courseregistration.user.adapter.persistence.UserEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,26 +16,27 @@ import static org.hamcrest.Matchers.is;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class CheckProfessorPortTest {
+class LoadUserPortTest {
   @Autowired
   private JpaUserRepository jpaUserRepository;
-  private CheckProfessorPort checkProfessorPort;
+  private LoadUserPort loadUserPort;
+  private UserConverter converter = new UserConverter();
 
   @BeforeEach
   void init() {
-    checkProfessorPort = new JpaUserAdapter(jpaUserRepository);
+    loadUserPort = new JpaUserAdapter(jpaUserRepository);
   }
 
   @Test
-  void check() {
-    var user = jpaUserRepository.save(UserEntity.builder()
-      .idNumber("203123412")
-      .name("홍길동")
+  void findById_not_exist() {
+    var entity = jpaUserRepository.save(UserEntity.builder()
+      .idNumber("220211230!")
+      .name("George")
       .authority(PROFESSOR)
       .build());
 
-    var actual = checkProfessorPort.check(user.id());
+    var actual = loadUserPort.findById(entity.id());
 
-    assertThat(actual, is(true));
+    assertThat(actual, is(converter.toUser(entity)));
   }
 }

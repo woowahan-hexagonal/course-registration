@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ErrorMessage {
   NOT_PROFESSOR("Not Professor"),
-  NOT_EXIST_USER("Not Exist User"),
   EXIST_COURSE("Exist Course Name"),
   INVALID_SCORE("Invalid Score"),
   INVALID_DURATION("Invalid Course Duration"),

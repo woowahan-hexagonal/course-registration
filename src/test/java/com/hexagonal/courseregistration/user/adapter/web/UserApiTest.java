@@ -37,7 +37,7 @@ class UserApiTest {
       "17101223",
       STUDENT
     );
-    var actual = mockMvc.perform(MockMvcRequestBuilders.post("/api/user").content(
+    var actual = mockMvc.perform(MockMvcRequestBuilders.post("/api/users").content(
         mapper.writeValueAsString(jsonRequest))
       .contentType(MediaType.APPLICATION_JSON));
 
@@ -55,7 +55,7 @@ class UserApiTest {
     );
     doThrow(new UserException(ALREADY_EXIST_USER)).when(registerUserUsecase).register(any());
 
-    var actual = mockMvc.perform(MockMvcRequestBuilders.post("/api/user").content(
+    var actual = mockMvc.perform(MockMvcRequestBuilders.post("/api/users").content(
         mapper.writeValueAsString(jsonRequest))
       .contentType(MediaType.APPLICATION_JSON));
 

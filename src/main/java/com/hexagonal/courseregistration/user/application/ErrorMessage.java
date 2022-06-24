@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ErrorMessage {
   ALREADY_EXIST_USER("Already Exist User"),
+  NOT_EXIST_USER("Not Exist User"),
   ;
 
   private final String detail;

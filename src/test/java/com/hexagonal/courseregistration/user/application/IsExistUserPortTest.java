@@ -2,7 +2,6 @@ package com.hexagonal.courseregistration.user.application;
 
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserAdapter;
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
-import com.hexagonal.courseregistration.user.application.CheckExistUserPort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +14,19 @@ import static org.hamcrest.Matchers.is;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class CheckExistUserPortTest {
+class IsExistUserPortTest {
   @Autowired
   private JpaUserRepository jpaUserRepository;
-  private CheckExistUserPort checkExistUserPort;
+  private IsExistUserPort isExistUserPort;
 
   @BeforeEach
   void init() {
-    checkExistUserPort = new JpaUserAdapter(jpaUserRepository);
+    isExistUserPort = new JpaUserAdapter(jpaUserRepository);
   }
 
   @Test
-  void check() {
-    var actual = checkExistUserPort.check("22101223231", STUDENT);
+  void existByIdNumberAndAuthority_false() {
+    var actual = isExistUserPort.existByNumberAndAuthority("000000abc000!", STUDENT);
 
     assertThat(actual, is(false));
   }

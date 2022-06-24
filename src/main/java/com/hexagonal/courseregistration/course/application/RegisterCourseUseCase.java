@@ -4,19 +4,19 @@ import com.hexagonal.courseregistration.course.application.error.AuthorityExcept
 import com.hexagonal.courseregistration.course.application.error.CourseException;
 import com.hexagonal.courseregistration.course.application.error.ErrorMessage;
 import com.hexagonal.courseregistration.course.application.port.CheckExistCoursePort;
-import com.hexagonal.courseregistration.course.application.port.CheckProfessorPort;
 import com.hexagonal.courseregistration.course.application.port.RegisterRequest;
 import com.hexagonal.courseregistration.course.application.port.SaveCoursePort;
+import com.hexagonal.courseregistration.user.application.CheckAuthorityUseCase;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class RegisterCourseUseCase {
-  private final CheckProfessorPort checkProfessorPort;
+  private final CheckAuthorityUseCase checkAuthorityUseCase;
   private final CheckExistCoursePort checkExistCoursePort;
   private final SaveCoursePort saveCoursePort;
 
   public void register(RegisterRequest request) {
-    if (!checkProfessorPort.check(request.userId())) {
+    if (!checkAuthorityUseCase.isProfessor(request.userId())) {
       throw new AuthorityException(ErrorMessage.NOT_PROFESSOR);
     }
 

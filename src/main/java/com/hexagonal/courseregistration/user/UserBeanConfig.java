@@ -2,16 +2,19 @@ package com.hexagonal.courseregistration.user;
 
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserAdapter;
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
-import com.hexagonal.courseregistration.user.application.RegisterUserUseCase;
-import com.hexagonal.courseregistration.user.application.CheckExistUserPort;
-import com.hexagonal.courseregistration.user.application.SaveUserPort;
+import com.hexagonal.courseregistration.user.application.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class UserBeanConfig {
   @Bean
-  CheckExistUserPort checkExistUserPort(JpaUserRepository jpaUserRepository) {
+  IsExistUserPort isExistUserPort(JpaUserRepository jpaUserRepository) {
+    return new JpaUserAdapter(jpaUserRepository);
+  }
+
+  @Bean
+  LoadUserPort loadUserPort(JpaUserRepository jpaUserRepository) {
     return new JpaUserAdapter(jpaUserRepository);
   }
 
@@ -21,10 +24,15 @@ class UserBeanConfig {
   }
 
   @Bean
+  CheckAuthorityUseCase checkAuthorityUseCase(LoadUserPort loadUserPort) {
+    return new CheckAuthorityUseCase(loadUserPort);
+  }
+
+  @Bean
   RegisterUserUseCase registerUserUseCase(
-    CheckExistUserPort checkExistUserPort,
+    IsExistUserPort loadUserPort,
     SaveUserPort saveUserPort
   ) {
-    return new RegisterUserUseCase(checkExistUserPort, saveUserPort);
+    return new RegisterUserUseCase(loadUserPort, saveUserPort);
   }
 }
