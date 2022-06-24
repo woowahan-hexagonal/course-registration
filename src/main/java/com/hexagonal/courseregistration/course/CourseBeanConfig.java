@@ -23,10 +23,10 @@ public class CourseBeanConfig {
 
   @Bean
   RegisterCourseUseCase registerCourseUseCase(
-    CheckAuthorityUseCase checkProfessorPort,
+    CheckAuthorityUseCase checkAuthorityUseCase,
     CheckExistCoursePort checkExistCoursePort,
     SaveCoursePort saveCoursePort
   ) {
-    return new RegisterCourseUseCase(checkProfessorPort, checkExistCoursePort, saveCoursePort);
+    return new RegisterCourseUseCase(checkAuthorityUseCase, checkExistCoursePort, saveCoursePort);
   }
 }
