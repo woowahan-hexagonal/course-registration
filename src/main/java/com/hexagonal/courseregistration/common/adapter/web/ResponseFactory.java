@@ -2,9 +2,12 @@ package com.hexagonal.courseregistration.common.adapter.web;
 
 import com.hexagonal.courseregistration.common.application.DomainException;
 import com.hexagonal.courseregistration.common.application.ForbiddenException;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResponseFactory {
   public static ResponseEntity<?> okWithData(String message, Object data) {
     return ResponseEntity.ok(new SuccessResponseWithData(message, data));
