@@ -5,10 +5,12 @@ import com.hexagonal.courseregistration.course.application.error.UserException;
 import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserRepository;
 import com.hexagonal.courseregistration.user.application.Authority;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.hexagonal.courseregistration.course.application.error.ErrorMessage.NOT_EXIST_USER;
 
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class JpaUserAdapter implements CheckProfessorPort {
   private final JpaUserRepository jpaUserRepository;
 

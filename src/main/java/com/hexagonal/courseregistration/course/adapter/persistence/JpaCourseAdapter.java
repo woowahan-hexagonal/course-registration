@@ -4,8 +4,10 @@ import com.hexagonal.courseregistration.course.application.port.CheckExistCourse
 import com.hexagonal.courseregistration.course.application.port.RegisterRequest;
 import com.hexagonal.courseregistration.course.application.port.SaveCoursePort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class JpaCourseAdapter implements CheckExistCoursePort, SaveCoursePort {
   private final JpaCourseRepository jpaCourseRepository;
 
@@ -14,6 +16,7 @@ public class JpaCourseAdapter implements CheckExistCoursePort, SaveCoursePort {
     return jpaCourseRepository.findByCourseName(courseName).isPresent();
   }
 
+  @Transactional
   @Override
   public void save(RegisterRequest request) {
     jpaCourseRepository.save(CourseEntity.builder()

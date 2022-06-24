@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class JpaUserAdapter implements CheckExistUserPort, SaveUserPort {
   private final JpaUserRepository jpaUserRepository;
 
-  @Override
   @Transactional
+  @Override
   public void save(User user) {
     jpaUserRepository.save(
       UserEntity.builder()
