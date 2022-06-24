@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.hexagonal.courseregistration.user.application.Authority.STUDENT;
-import static com.hexagonal.courseregistration.user.application.Message.ALREADY_EXIST_USER;
+import static com.hexagonal.courseregistration.user.application.ErrorMessage.ALREADY_EXIST_USER;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -37,7 +37,7 @@ class UserApiTest {
       "17101223",
       STUDENT
     );
-    var actual = mockMvc.perform(MockMvcRequestBuilders.post("/api/user").content(
+    var actual = mockMvc.perform(MockMvcRequestBuilders.post("/api/users").content(
         mapper.writeValueAsString(jsonRequest))
       .contentType(MediaType.APPLICATION_JSON));
 
@@ -55,7 +55,7 @@ class UserApiTest {
     );
     doThrow(new UserException(ALREADY_EXIST_USER)).when(registerUserUsecase).register(any());
 
-    var actual = mockMvc.perform(MockMvcRequestBuilders.post("/api/user").content(
+    var actual = mockMvc.perform(MockMvcRequestBuilders.post("/api/users").content(
         mapper.writeValueAsString(jsonRequest))
       .contentType(MediaType.APPLICATION_JSON));
 

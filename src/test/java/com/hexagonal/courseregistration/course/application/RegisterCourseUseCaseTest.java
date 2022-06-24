@@ -1,15 +1,14 @@
 package com.hexagonal.courseregistration.course.application;
 
-import com.hexagonal.courseregistration.course.application.*;
 import com.hexagonal.courseregistration.course.application.domain.CourseTime;
 import com.hexagonal.courseregistration.course.application.domain.Duration;
 import com.hexagonal.courseregistration.course.application.domain.Score;
 import com.hexagonal.courseregistration.course.application.error.AuthorityException;
 import com.hexagonal.courseregistration.course.application.error.CourseException;
 import com.hexagonal.courseregistration.course.application.port.CheckExistCoursePort;
-import com.hexagonal.courseregistration.course.application.port.CheckProfessorPort;
 import com.hexagonal.courseregistration.course.application.port.RegisterRequest;
 import com.hexagonal.courseregistration.course.application.port.SaveCoursePort;
+import com.hexagonal.courseregistration.user.application.CheckAuthorityUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
@@ -23,18 +22,18 @@ import static org.mockito.Mockito.*;
 
 class RegisterCourseUseCaseTest {
   private RegisterCourseUseCase registerCourseUseCase;
-  private CheckProfessorPort checkProfessorPort;
+  private CheckAuthorityUseCase checkAuthorityUseCase;
   private CheckExistCoursePort checkExistCoursePort;
   private SaveCoursePort saveCoursePort;
 
   @BeforeEach
   void init() {
-    checkProfessorPort = mock(CheckProfessorPort.class);
+    checkAuthorityUseCase = mock(CheckAuthorityUseCase.class);
     checkExistCoursePort = mock(CheckExistCoursePort.class);
     saveCoursePort = mock(SaveCoursePort.class);
 
     registerCourseUseCase = new RegisterCourseUseCase(
-      checkProfessorPort,
+      checkAuthorityUseCase,
       checkExistCoursePort,
       saveCoursePort
     );
@@ -48,16 +47,16 @@ class RegisterCourseUseCaseTest {
       new Score(3),
       20,
       new CourseTime(FRIDAY, new Duration(1, 4)));
-    given(checkProfessorPort.check(anyLong())).willReturn(true);
+    given(checkAuthorityUseCase.isProfessor(anyLong())).willReturn(true);
     given(checkExistCoursePort.check(anyString())).willReturn(false);
 
     registerCourseUseCase.register(request);
 
-    InOrder inOrder = Mockito.inOrder(checkProfessorPort, checkExistCoursePort, saveCoursePort);
-    inOrder.verify(checkProfessorPort, times(1)).check(anyLong());
+    InOrder inOrder = Mockito.inOrder(checkAuthorityUseCase, checkExistCoursePort, saveCoursePort);
+    inOrder.verify(checkAuthorityUseCase, times(1)).isProfessor(anyLong());
     inOrder.verify(checkExistCoursePort, times(1)).check(anyString());
     inOrder.verify(saveCoursePort, times(1)).save(any(RegisterRequest.class));
-    verifyNoMoreInteractions(checkProfessorPort);
+    verifyNoMoreInteractions(checkAuthorityUseCase);
     verifyNoMoreInteractions(checkExistCoursePort);
     verifyNoMoreInteractions(saveCoursePort);
   }
@@ -70,7 +69,7 @@ class RegisterCourseUseCaseTest {
       new Score(3),
       20,
       new CourseTime(FRIDAY, new Duration(1, 4)));
-    given(checkProfessorPort.check(anyLong())).willReturn(false);
+    given(checkAuthorityUseCase.isProfessor(anyLong())).willReturn(false);
     given(checkExistCoursePort.check(anyString())).willReturn(false);
 
     assertThrows(AuthorityException.class, () -> registerCourseUseCase.register(request));
@@ -84,7 +83,7 @@ class RegisterCourseUseCaseTest {
       new Score(3),
       20,
       new CourseTime(FRIDAY, new Duration(1, 4)));
-    given(checkProfessorPort.check(anyLong())).willReturn(true);
+    given(checkAuthorityUseCase.isProfessor(anyLong())).willReturn(true);
     given(checkExistCoursePort.check(anyString())).willReturn(true);
 
     assertThrows(CourseException.class, () -> registerCourseUseCase.register(request));

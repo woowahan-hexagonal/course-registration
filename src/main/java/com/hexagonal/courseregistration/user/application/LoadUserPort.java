@@ -1,5 +1,5 @@
 package com.hexagonal.courseregistration.user.application;
 
-public interface SaveUserPort {
-  void save(NewUser newUser);
+public interface LoadUserPort {
+  User findById(Long id);
 }

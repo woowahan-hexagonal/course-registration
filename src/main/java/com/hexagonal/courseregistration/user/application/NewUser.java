@@ -1,7 +1,6 @@
 package com.hexagonal.courseregistration.user.application;
 
-public record User(
-  Long id,
+public record NewUser(
   String name,
   String idNumber,
   Authority authority

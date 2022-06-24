@@ -1,30 +1,41 @@
 package com.hexagonal.courseregistration.user.adapter.persistence;
 
-import com.hexagonal.courseregistration.user.application.Authority;
-import com.hexagonal.courseregistration.user.application.User;
-import com.hexagonal.courseregistration.user.application.CheckExistUserPort;
-import com.hexagonal.courseregistration.user.application.SaveUserPort;
+import com.hexagonal.courseregistration.user.application.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.hexagonal.courseregistration.user.application.ErrorMessage.NOT_EXIST_USER;
+
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class JpaUserAdapter implements CheckExistUserPort, SaveUserPort {
+public class JpaUserAdapter implements LoadUserPort, SaveUserPort, IsExistUserPort {
   private final JpaUserRepository jpaUserRepository;
+  private final UserConverter converter = new UserConverter();
 
-  @Override
   @Transactional
-  public void save(User user) {
+  @Override
+  public void save(NewUser newUser) {
     jpaUserRepository.save(
       UserEntity.builder()
-        .name(user.name())
-        .idNumber(user.idNumber())
-        .authority(user.authority())
+        .name(newUser.name())
+        .idNumber(newUser.idNumber())
+        .authority(newUser.authority())
         .build());
   }
 
   @Override
-  public boolean check(String idNumber, Authority authority) {
+  public User findById(Long id) {
+    var entity = jpaUserRepository.findById(id);
+
+    if (entity.isEmpty()) {
+      throw new UserException(NOT_EXIST_USER);
+    }
+
+    return converter.toUser(entity.get());
+  }
+
+  @Override
+  public boolean existByNumberAndAuthority(String idNumber, Authority authority) {
     return jpaUserRepository.findByIdNumberAndAuthority(idNumber, authority).isPresent();
   }
 }

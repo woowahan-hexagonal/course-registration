@@ -10,49 +10,52 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 class RegisterUserUseCaseTest {
-  private CheckExistUserPort checkExistUserPort;
+  private IsExistUserPort isExistUserPort;
   private SaveUserPort saveUserPort;
   private RegisterUserUseCase registerUserUsecase;
 
   @BeforeEach
   void init() {
-    checkExistUserPort = mock(CheckExistUserPort.class);
+    isExistUserPort = mock(IsExistUserPort.class);
     saveUserPort = mock(SaveUserPort.class);
-    registerUserUsecase = new RegisterUserUseCase(checkExistUserPort, saveUserPort);
+    registerUserUsecase = new RegisterUserUseCase(isExistUserPort, saveUserPort);
   }
 
   @Test
   void register_student() {
     var request = new RegisterRequest("seungjaeOh", "17101223", STUDENT);
-    given(checkExistUserPort.check("17101223", STUDENT)).willReturn(false);
+    given(isExistUserPort.existByNumberAndAuthority("17101223", STUDENT)).willReturn(false);
 
     registerUserUsecase.register(request);
 
-    var inOrder = inOrder(checkExistUserPort, saveUserPort);
-    inOrder.verify(checkExistUserPort, times(1)).check(any(), any());
+    var inOrder = inOrder(isExistUserPort, saveUserPort);
+    inOrder.verify(isExistUserPort, times(1)).existByNumberAndAuthority(any(), any());
     inOrder.verify(saveUserPort, times(1)).save(any());
-    verifyNoMoreInteractions(checkExistUserPort);
+    verifyNoMoreInteractions(isExistUserPort);
     verifyNoMoreInteractions(saveUserPort);
   }
 
   @Test
   void register_professor() {
     var request = new RegisterRequest("chulsuKim", "221103", PROFESSOR);
-    given(checkExistUserPort.check("221103", PROFESSOR)).willReturn(false);
+    given(isExistUserPort.existByNumberAndAuthority("221103", PROFESSOR)).willReturn(false);
 
     registerUserUsecase.register(request);
 
-    var inOrder = inOrder(checkExistUserPort, saveUserPort);
-    inOrder.verify(checkExistUserPort, times(1)).check(any(), any());
+    var inOrder = inOrder(isExistUserPort, saveUserPort);
+    inOrder.verify(isExistUserPort, times(1)).existByNumberAndAuthority(any(), any());
     inOrder.verify(saveUserPort, times(1)).save(any());
-    verifyNoMoreInteractions(checkExistUserPort);
+    verifyNoMoreInteractions(isExistUserPort);
     verifyNoMoreInteractions(saveUserPort);
   }
 
   @Test
   void register_exist_user() {
-    var request = new RegisterRequest("seungjaeOh", "17101223", STUDENT);
-    given(checkExistUserPort.check("17101223", STUDENT)).willReturn(true);
+    var request = new RegisterRequest(
+      "seungjaeOh",
+      "17101223",
+      STUDENT);
+    given(isExistUserPort.existByNumberAndAuthority("17101223", STUDENT)).willReturn(true);
 
     assertThrows(UserException.class, () -> registerUserUsecase.register(request));
   }
