@@ -10,6 +10,8 @@ public enum Message {
   NOT_EXIST_USER("Not Exist User"),
   EXIST_COURSE("Exist Course Name"),
   INVALID_SCORE("Invalid Score"),
-  INVALID_DURATION("Invalid Course Duration");
+  INVALID_DURATION("Invalid Course Duration"),
+  ;
+
   private final String detail;
 }
