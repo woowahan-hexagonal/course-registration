@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum Message {
+public enum ErrorMessage {
   NOT_PROFESSOR("Not Professor"),
   NOT_EXIST_USER("Not Exist User"),
   EXIST_COURSE("Exist Course Name"),

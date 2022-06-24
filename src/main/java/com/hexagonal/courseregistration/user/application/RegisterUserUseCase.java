@@ -2,7 +2,7 @@ package com.hexagonal.courseregistration.user.application;
 
 import lombok.RequiredArgsConstructor;
 
-import static com.hexagonal.courseregistration.user.application.Message.ALREADY_EXIST_USER;
+import static com.hexagonal.courseregistration.user.application.ErrorMessage.ALREADY_EXIST_USER;
 
 @RequiredArgsConstructor
 public class RegisterUserUseCase {

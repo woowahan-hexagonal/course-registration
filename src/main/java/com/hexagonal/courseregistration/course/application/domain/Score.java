@@ -3,7 +3,7 @@ package com.hexagonal.courseregistration.course.application.domain;
 import com.hexagonal.courseregistration.course.application.error.CourseException;
 import lombok.EqualsAndHashCode;
 
-import static com.hexagonal.courseregistration.course.application.error.Message.INVALID_SCORE;
+import static com.hexagonal.courseregistration.course.application.error.ErrorMessage.INVALID_SCORE;
 
 @EqualsAndHashCode
 public class Score {

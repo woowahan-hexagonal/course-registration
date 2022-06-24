@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.hexagonal.courseregistration.user.application.Authority.STUDENT;
-import static com.hexagonal.courseregistration.user.application.Message.ALREADY_EXIST_USER;
+import static com.hexagonal.courseregistration.user.application.ErrorMessage.ALREADY_EXIST_USER;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

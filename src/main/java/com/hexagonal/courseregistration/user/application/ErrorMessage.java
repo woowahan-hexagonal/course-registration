@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum Message {
+public enum ErrorMessage {
   ALREADY_EXIST_USER("Already Exist User"),
   ;
 

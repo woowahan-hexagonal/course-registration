@@ -6,7 +6,7 @@ import com.hexagonal.courseregistration.user.adapter.persistence.JpaUserReposito
 import com.hexagonal.courseregistration.user.application.Authority;
 import lombok.RequiredArgsConstructor;
 
-import static com.hexagonal.courseregistration.course.application.error.Message.NOT_EXIST_USER;
+import static com.hexagonal.courseregistration.course.application.error.ErrorMessage.NOT_EXIST_USER;
 
 @RequiredArgsConstructor
 public class JpaUserAdapter implements CheckProfessorPort {
